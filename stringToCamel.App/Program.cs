@@ -8,11 +8,23 @@ public class Program
     {
         var tempOut = string.Empty;
 
-        var tempArrSubStr = underscoreSep.split("_");
+        var tempArrSubStr = underscoreSep.Split("_");
 
         if (tempArrSubStr.Length == 0)
-            return 0;
+            return "";
+        
+        tempOut += char.ToLower(tempArrSubStr[0][0]) + tempArrSubStr[0].Substring(1);
+        
+        for (int i = 0; i < tempArrSubStr.Length; ++i)
+        {
+            tempOut += char.ToUpper(tempArrSubStr[i][0]) + tempArrSubStr[i].Substring(1);
+        }
+
+        return tempOut;
     }
 
-    public statuc void 
+    public static void Main(string[] args)
+    {
+        Console.WriteLine("Hello World");
+    }
 }
