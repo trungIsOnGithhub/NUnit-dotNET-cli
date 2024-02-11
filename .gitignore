@@ -5,6 +5,12 @@
 # .NET Core build folders
 bin/
 obj/
+target/
+
+### project build folders
+*/bin/
+*/obj/
+*/target/
 
 # Common node modules locations
 /node_modules
