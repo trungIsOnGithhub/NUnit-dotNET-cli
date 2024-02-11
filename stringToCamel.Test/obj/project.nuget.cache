@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "kHCybd+AF2Zn50+nJZkztkvO/8CR7i7gvNlYxvOOCDkrmm1vzq0NAcTiKJHAYgmfs9upVVuf714waVZN08KgOw==",
+  "dgSpecHash": "fZ6IIaQIB3t2OsiBHXID2YJci7E1FQH+cHRBumbOzN2PhzIjDaCR20xVzhNCTbkIbqK8bS4Cerf9j+CVkUmBsA==",
   "success": true,
   "projectFilePath": "/home/pc/vuive/StringToCamel/stringToCamel.Test/stringToCamel.Test.csproj",
   "expectedPackageFiles": [
