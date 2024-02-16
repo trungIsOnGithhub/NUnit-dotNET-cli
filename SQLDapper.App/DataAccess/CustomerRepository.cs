@@ -9,20 +9,18 @@ namespace SQLDapper.DataAccess
 {
     public interface ICustomerRepository
     {
-        Customer getOne(long Id);
-        void saveOne(Customer newCustomer);
+        Customer GetOne(long Id);
+        void SaveOne(Customer newCustomer);
     }
 
     public class CustomerRepository : SqlBaseRepository, ICustomerRepository
     {
-        public void saveOne(Customer newCustomer)
+        public void SaveOne(Customer newCustomer)
         {
             if (!File.Exists(DbFile))
             {
-                CreateDatabase();
+                throw new NullReferenceException();
             }
-
-            CreateTableCustomerIfNotExists();
 
             using (var conn = GetSimpleDbConnection())
             {
@@ -31,13 +29,43 @@ namespace SQLDapper.DataAccess
                     ( FirstName, LastName, BirthYear )
                     VALUES ( @FirstName, @LastName, @BirthYear );
                     SELECT last_insert_rowid()", newCustomer
-                ).Single();
+                ).First();
             }
         }
 
-        public Customer getOne(long Id)
+        public Customer GetOne(long id)
         {
-            throw new NotImplementedException();
+            if (!File.Exists(DbFile))
+            {
+                throw new NullReferenceException();
+            }
+
+            Customer customer;
+
+            using (var conn = GetSimpleDbConnection())
+            {
+                conn.Open();
+                customer = conn.Query<Customer>(@"SELECT
+                    Id, FirstName, LastName, BirthYear
+                    FROM Customer
+                    WHERE Id = @id", new { id }
+                ).FirstOrDefault();
+            }
+
+            return customer;
+        }
+
+        public int GetNumberOfCustomer()
+        {
+            int numberOfCustomer;
+
+            using (var conn = GetSimpleDbConnection())
+            {
+                conn.Open();
+                numberOfCustomer = conn.Query<int>("SELECT COUNT(*) FROM Customer").First();
+            }
+
+            return numberOfCustomer;
         }
 
         public void CreateTableCustomerIfNotExists()

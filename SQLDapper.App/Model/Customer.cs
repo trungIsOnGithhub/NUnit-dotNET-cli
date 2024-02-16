@@ -9,5 +9,10 @@ namespace SQLDapper.Model
         public string? LastName { get; set; }
 
         public int? BirthYear { get; set; }
+
+        public override string ToString()
+        {
+            return $"{LastName} {FirstName} - {BirthYear}";
+        }
     }
 }

@@ -30,7 +30,16 @@ namespace SQLDapper.App
 
             var repository = new CustomerRepository();
 
-            repository.saveOne(newCustomer);
+            repository.CreateTableCustomerIfNotExists();
+
+            repository.SaveOne(newCustomer);
+
+            int numberOfCustomer = repository.GetNumberOfCustomer();
+
+            for (int id = 1; id <= numberOfCustomer; ++id)
+            {
+                Console.WriteLine(repository.GetOne(id));
+            }
         }
     }
 }

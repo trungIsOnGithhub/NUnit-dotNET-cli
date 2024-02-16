@@ -21,16 +21,5 @@ namespace SQLDapper.DataAccess
             // }
             // return DbConnCache;
         }
-
-        public void CreateDatabase()
-        {
-            // create database with dummy table
-            using (var conn = GetSimpleDbConnection())
-            {
-                conn.Open();
-                conn.Execute("CREATE TABLE IF NOT EXISTS dummy(dummycol BOOLEAN)");
-                Console.WriteLine("hihi");
-            }
-        }
     }
 }
